@@ -1,0 +1,30 @@
+#!/bin/bash
+
+if [[ "${OSTYPE}" =~ 'darwin'* ]]; then
+  PARSER_OPTIONS="-j -f "%FT%T""
+  CONVERTER_OPTIONS="-j -f "%s" "
+else
+  PARSER_OPTIONS="-d"
+  CONVERTER_OPTIONS="-d@"
+fi
+
+TIMESTAMP=${1:-$(date +"%FT%T")}
+
+# Validate TIMESTAMP
+UTC_EPOCH=$(date -u ${PARSER_OPTIONS} ${TIMESTAMP} +"%s" 2> /dev/null)
+if [ $? -ne 0 ]; then
+  echo "Invalid Timestamp Format. Must be 'YYYY-mm-ddTHH:MM:ss'"
+  exit 1
+fi
+
+TIMEZONES=(
+  UTC
+  America/Los_Angeles
+  Asia/Taipei
+  Asia/Hong_Kong
+  Australia/Sydney
+)
+
+for tz in "${TIMEZONES[@]}"; do
+  printf "%19s %-4s | %-20s\n" $(TZ="${tz}" date ${CONVERTER_OPTIONS}${UTC_EPOCH} +"%FT%T %Z ${tz}" )
+done
