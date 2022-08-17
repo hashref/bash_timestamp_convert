@@ -1,6 +1,6 @@
 # bash_timestamp_convert
 
-This is a UTC timestamp conversion tool. I made it because I routinely have to convert UTC to specific timezones and I got tired of either A) typing `date` commands or B) going to free websites to do these standard conversions. This script handles those specific convertions for me.
+This is a UTC timestamp conversion tool. I made it because I routinely have to convert UTC to specific timezones and I got tired of either A) typing `date` commands or B) going to free websites to do these standard conversions. This script handles those specific conversions for me.
 
 Any timezone can be easily added to the BASH array. This timezone that are currently being convert to are...
 
@@ -32,3 +32,9 @@ $ convertUTC 2022-01-01T00:00:00
 2022-01-01T08:00:00 HKT  | Asia/Hong_Kong
 2022-01-01T11:00:00 AEDT | Australia/Sydney
 ```
+
+## Ports
+
+I have other versions of this script in other coding languages. This project is one that I use to cut my teeth on when I'm learning another programming language.
+
+- [Perl](https://github.com/hashref/perl_timestamp_convert)
